@@ -1,0 +1,526 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('../resource/font/爱不在服务区.ttf') format('truetype');
+  }
+.scaling-button {
+    animation: scaleAnimation 1.2s infinite; /* 动画持续2秒，无限循环 */
+}
+#chatcbtn{
+    background: url("../resource/image/close.svg") center no-repeat;
+    background-size: cover;
+}
+#skin{
+    background: url("../resource/image/skin.svg") center no-repeat;
+    background-size: cover;
+}
+#tone{
+    background: url("../resource/image/tone.svg") center no-repeat;
+    background-size: cover;
+}
+#voice{
+    background: url("../resource/image/voice.svg") center no-repeat;
+    background-size: cover;
+}
+#mute{
+    background: url("../resource/image/playing.svg") center no-repeat;
+    background-size: cover;
+}
+#photo{
+    background: url("../resource/image/text.svg") center no-repeat;
+    background-size: cover;
+}
+::-webkit-input-placeholder {
+    color: var(--MAIN_B);
+    font-family: 'MyFont';
+}
+body{
+    font-family:'MyFont';
+    /* background-image: linear-gradient(150deg, var(--MAIN) 25%, var(--MAIN_LIGHT) 25%, var(--MAIN) 50%, var(--MAIN_LIGHT) 50%, var(--MAIN) 75%, var(--MAIN_LIGHT) 75%, var(--MAIN) 100%); */
+    background-size: 900px 1000px;
+    background-image: linear-gradient(to top, var(--MAIN_LIGHTP) 0%, var(--MAIN_B) 100%);
+    display: flex;
+    height: 90vh;
+    /* width: 100vh; */
+    justify-content: center;
+    flex-direction: row;
+    overflow: hidden;
+}
+.side{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    margin-right: 3%;
+    border-radius: 30px;
+    background-image: linear-gradient(to top, var(--MAIN_B) 0%, var(--DEEP) 100%);
+    margin-top: 2%;
+    height: 99%;
+    max-height: 99%;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+/* .text{
+     margin-bottom: 3%; 
+} */
+.dialog{
+    width: 80%;
+    height:55%;
+    padding:10px;
+    background-color: var(--CHAT_B);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease-in-out;
+}
+.oimg{
+    height:30%;
+    width: 100%;
+}
+.oimg:hover{
+    transition: 0.5s ease;
+    border-radius: 20px;
+    transform: scale(1.2);
+    cursor: pointer;
+    background-color: var(--MAIN_D) ;
+}
+.dialog img{
+    width: 100%;
+    height: 100%;
+}
+.img{
+    height: 28%;
+    max-height: 70%;
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.videobox{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    
+}
+.container-video{
+    flex:1;
+    /* border: 2px solid red; */
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+.img video{
+    width: 90%;
+    /* border: solid red 1px; */
+    transition: 0.8s ease;
+    z-index: 0;
+}
+.img video:hover{
+    cursor: pointer;
+}
+.bubble{
+    height: 65%;
+    width: 0;
+    border-radius: 20px;
+    background-color: var(--DEEP);
+    transition: 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    
+}
+.container-button{
+    width:80%;
+    height: 0;
+    /* background-color: aqua; */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* transition:0.5s ease-in-out; */
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* 添加transform和opacity的过渡效果 */
+    transform: translateY(100%); /* 初始状态在videoPlayer下方 */
+    opacity: 0; /* 初始状态透明 */
+}
+.container-button button{
+    margin: 3%;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    transition: 0.5s ease;
+}
+.container-button button:hover{
+    cursor: pointer;
+    transform: scale(1.5) rotate(360deg);
+}
+.historychat{
+    display: flex;
+    flex-direction: column;
+    width:80%;
+    height:0;
+    max-height: 30%;
+    border-radius: 15px;
+    background-color: var(--MAIN);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* 添加transform和opacity的过渡效果 */
+    transform: translateY(100%); /* 初始状态在videoPlayer下方 */
+    opacity: 0; /* 初始状态透明 */
+}
+#chathead{
+    width:100%;
+    height:15%;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+#chatcbtn{
+    width:25px;
+    height: 25px;
+    border-radius: 7px;
+    margin-left: auto;
+    margin-right: 10px;
+    transition: 0.5s ease;
+}
+
+#chatcbtn:hover{
+    cursor: pointer;
+    transform: rotate(360deg) scale(1.2);
+}
+#chatcontent{
+    width: 100%;
+    height: 85%;
+    max-height: 85%;
+    background-color: var(--MAIN_LIGHT);
+    border-radius: 15px;
+}
+#userchatinput{
+    display: flex;
+    width: 100%;
+    height: 10%;
+}
+#chatinput{
+    width:85%;
+    height: 85%;
+    border-radius: 20px;
+}
+#chatoutbtn{
+    width:10%;
+    height: 100%;
+    border-radius: 10px;
+    background: url("../resource/image/deliver.svg") center no-repeat;
+    background-size: cover;
+    transition: 0.5s ease;
+}
+#chatoutbtn:hover{
+    transform: rotate(360deg) scale(1.1);
+    cursor: pointer;
+}
+.main{
+    margin-top: 2%;
+    height: 98%;
+    flex: 3;
+    max-height: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+.right{
+    background-color:var(--MAIN_LIGHT);
+    width: 90%;
+    height: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 40px;
+}
+.ornament{
+    border-radius: 15px;
+    width: 100%;
+    height: 20%;
+    margin-bottom: 2%;
+    background-color: var(--MAIN_LIGHT);
+    background-image: linear-gradient(45deg, var(--MAIN_D) 25%, transparent 25%, transparent 75%, var(--MAIN_D) 75%, var(--MAIN_D)),
+    linear-gradient(-45deg, var(--MAIN_D) 25%, transparent 25%, transparent 75%, var(--MAIN_D) 75%, var(--MAIN_D));
+    background-size: 30px 30px;
+}
+.userbox , .aibox{
+    height:80%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.aibox{
+    max-width: 100%;
+    max-height: 80%;
+    flex-direction: row;
+}
+.chatbox {
+    width: 100%;
+    height: 100%;
+    background-color: var(--CHAT_B);
+    border-radius: 25px;
+    max-height: 100%;
+    max-width: 100%;
+}
+.chatbox {
+    width: 100%;
+    height: 100%;
+    background-color: var(--CHAT_B);
+    border-radius: 25px;
+    max-height: 100%;
+    max-width: 100%;
+}
+.historybox {
+    display: none;
+    width: 20%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+.historybox.show {
+    display: block;
+}
+.historyboxtop{
+    margin-left: 10%;
+    width: 90%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+#historycbtn {
+    width: 25px;
+    height: 25px;
+    border-radius: 7px;
+    margin-left: auto;
+    margin-right: 10px;
+    transition: 0.5s ease;
+}
+#historycbtn {
+    background: url(../resource/image/close.svg) center no-repeat;
+    background-size: cover;
+}
+#historycbtn:hover {
+    cursor: pointer;
+    transform: rotate(360deg) scale(1.2);
+}
+.historylist{
+    height: 85%;
+    width: 100%;
+    flex-direction:column;
+    overflow:auto;
+}
+.historyli{
+    width: 100%;
+    text-indent: 20px;
+    line-height: 40px;
+    background-color: var(--MAIN);
+    border-radius:5px;
+    display: flex;
+    align-items: center;
+}
+.historyli:hover,.currentchat{
+    background-color:var(--MAIN_D);
+}
+.newchat{
+    height: 5%;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #cca6bf;
+}
+.newchat:hover{
+    background-color: var(--MAIN_D);
+    font-size: large;
+}
+.userbox{
+    flex:1
+}
+.container-input{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imgbox{
+    display: flex;
+    width: 50px;
+    height: 55px;
+    overflow: hidden;
+    margin-left: 5px;
+    margin-right: 5px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+.imgbox img{
+    width: 100%;
+    height: 85%;
+    transition: 0.5s ease-in-out;
+}
+.imgbox input{
+    display: none;
+}
+#output{
+    display: flex;
+    width: 100%;
+}
+.userinput{
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 88%;
+    font-size: 16px;
+    padding: 12px 5px 12px 5px;
+    border: 2px solid var(--DEEP); 
+    border-radius: 15px;
+}
+.outbox{
+    display: flex;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    margin-left: 10px;
+    margin-right: 5px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+.outbox img{
+    width: 100%;
+    height: 100%;
+}
+.outbox input{
+    display: none;;
+}
+.container-background-button{
+    width: 80%;
+    height: 8%;
+    margin-left: 5%;
+}
+
+.container-background-button input[type = "checkbox"]{
+    display: none;
+}
+
+label{
+    display: flex;
+    align-items: center;
+}
+
+.button-mode{
+    display: inline-block;
+    width: var(--BUTTON_WIDTH);
+    height: var(--BUTTON_HEIGHT);
+    background-color: var(--MAIN_LIGHT);
+    border-radius: calc(var(--BUTTON_HEIGHT) / 2);
+    position: relative;
+    margin-left: 20px;
+    transition: 0.2s all ease-in-out;
+}
+.history-container{
+    margin-left: auto;
+}
+.button-history{
+    background-color: var(--MAIN_LIGHT);
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+.button-history:hover{
+    cursor:pointer;
+    color:white;
+    background-color: var(--DEEP) ;
+    transform: scale(1.1);
+}
+
+.container-background-button{
+    display: flex;
+    align-items: center;
+}
+
+.button-mode::after{
+    content:"";
+    display:block;
+    width: var(--TOGGLE_DIAMETER);
+    height: var(--TOGGLE_DIAMETER);
+    background-color: #fff;
+    border-radius: calc(var(--TOGGLE_DIAMETER) / 2);
+    position: absolute;
+    top: var(--BUTTON_TOGGLE_OFFSET);
+    transform: translateX(var(--BUTTON_TOGGLE_OFFSET));
+    box-shadow:var(--TOGGLE_SHADOW_OFFSET) 0 calc(var(--TOGGLE_SHADOW_OFFSET) * 4) rgba(0, 0, 0, 0.3);
+    transition: 0.2s all ease-in-out;
+}
+input[type = "checkbox"]:hover +span{
+    cursor: pointer;
+}
+input[type="checkbox"]:checked + span{
+    background-color: var(--MAIN_LIGHTP);
+}
+
+input[type="checkbox"]:checked + span::after {
+    transform: translateX(calc(var(--BUTTON_WIDTH) - var(--TOGGLE_DIAMETER) - var(--BUTTON_TOGGLE_OFFSET)));
+    box-shadow:calc(var(--TOGGLE_SHADOW_OFFSET) * -1) 0 calc(var(--TOGGLE_SHADOW_OFFSET) * 4) rgba(0, 0, 0, 0.3);
+}
+input[type="checkbox"]:active + span::after {
+    width:var(--TOGGLE_WIDER);
+}
+input[type="checkbox"]:checked:active + span::after {
+    transform: translateX(calc(var(--BUTTON_WIDTH) - var(--TOGGLE_WIDER) - var(--BUTTON_TOGGLE_OFFSET)));
+}
+.imgbox:hover{
+    background-color:#fff;
+    transition: 0.5s ease-in;
+}
+#toggleimage:checked + img {
+    content: url("../resource/image/voice_fill.svg");
+}
+#toggleimage:hover + img {
+    content: url("../resource/image/voice_fill.svg");
+    cursor: pointer;
+}
+@keyframes pulsate {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        transform: scale(1.1) translateY(-5%);
+    }
+}
+@keyframes scaleAnimation {
+    0%, 100% {
+        transform: scale(1); /* 正常大小 */
+    }
+    50% {
+        transform: scale(1.2); /* 放大到1.2倍 */
+    }
+}
+#toggleimage:checked + img {
+    animation: pulsate 1s infinite ease-in-out;
+}
+.outbox:hover{
+    background-color:#fff;
+    transition: 0.5s ease;
+}
+#outimage:hover + img{
+    transform:scale(1.1) rotate(360deg);
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.particles { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 5; }
+.particle { position: absolute; background: rgba(255, 255, 255, 0.5); border-radius: 50%; animation: float 10s infinite ease-in-out, move 20s linear infinite; } 
+@keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } } 
+@keyframes move { 0% { transform: translateX(0); } 100% { transform: translateX(100vw); } }

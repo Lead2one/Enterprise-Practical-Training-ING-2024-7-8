@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif; /* 添加科技感字体 */
+    background-color: #000;
+}
+
+/* 粒子样式 */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background: #ffffff;
+    width: 400px;
+    height: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.text {
+    height: 20%;
+    margin-bottom: 20px;
+}
+
+.form-tabs {
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    height: 50px;
+    width: 30%;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+}
+
+.tab-button.active {
+    height: 50px;
+    width: 30%;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    background: #ff0000;
+}
+
+.form-content {
+    display: none;
+}
+
+.form-content.active {
+    display: block;
+    height: 50%;
+}
+
+form {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding: 15px;
+    border: none;
+    background: #0c100a;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff0000;
+}
