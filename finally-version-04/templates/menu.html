@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能问答系统</title>
+    <link rel="icon" href="../resource/image/home.svg"/>
+    <link rel="stylesheet" href="../statics/menu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div class="particles"></div>
+    <div class="overlay">
+        <header>
+            <h1>Welcome to Intelligent Q&A</h1>
+            <h2>Please select the mode you need</h2>
+        </header>
+        <div class="options-container">
+            <!-- 选项卡 - 饮食 -->
+            <div class="option" id="foodbtn" onclick="selectMode('Food')">
+                <p>Food</p>
+                <img src="https://img.icons8.com/color/100/000000/restaurant.png" alt="Food">
+            </div>
+            <!-- 选项卡 - 医疗 -->
+            <div class="option" id="medicalbtn" onclick="selectMode('Medical')">
+                <p>Medical</p>
+                <img src="https://img.icons8.com/color/100/000000/hospital-room.png" alt="Medical">
+            </div>
+            <!-- 选项卡 - 交通 -->
+            <div class="option" id="trafficbtn" onclick="selectMode('Traffic')">
+                <p>Traffic</p>
+                <img src="https://img.icons8.com/color/100/000000/car.png" alt="Transportation">
+            </div>
+            <!-- 选项卡 - 旅行 -->
+            <div class="option" id="travelbtn" onclick="selectMode('Travel')">
+                <p>Travel</p>
+                <img src="https://img.icons8.com/color/100/000000/airplane-take-off.png" alt="Travel">
+            </div>
+        </div>
+    </div>
+    <script src="../statics/menu.js"></script>
+</body>
+</html>

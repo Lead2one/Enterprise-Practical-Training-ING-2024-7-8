@@ -1,0 +1,21 @@
+:root{
+    --BORDER_RADIUS_MI: 15PX;
+    --TRANSITION_MENU_TIME: 0.2S;
+    --BUTTON_WIDTH:50PX;
+    --BUTTON_HEIGHT:29PX;
+    --TOGGLE_DIAMETER:25PX;
+    --BUTTON_TOGGLE_OFFSET:CALC((VAR(--BUTTON_HEIGHT) - VAR(--TOGGLE_DIAMETER)) / 2);
+    --TOGGLE_SHADOW_OFFSET:2PX;
+    --TOGGLE_WIDER:33.3PX;
+    --BUTTON_WIDTH:50PX;
+    --BUTTON_HEIGHT:29PX;
+    --MAIN:#e4c6d0;
+    --MAIN_LIGHT:#edd1d8;
+    --MAIN_LIGHTP:#c4a3bf;
+    --MAIN_B:#9d5b8b;
+    --MAIN_O:#cca6bf;
+    --DEEP:#cc7eb1;
+    --MAIN_R:#d3cfd9;
+    --MAIN_D:#a69abd;
+    --CHAT_B:#e6cde3;
+;}
