@@ -1,7 +1,7 @@
 var record = false;
 var animationRunning = false;
 var muted = false;
-var photod = false;
+// var photod = false;
 
 voice.onclick = function(){
     record = !record
@@ -23,29 +23,29 @@ voice.onclick = function(){
     }
 }
 
-photo.onclick = function(){
-    
-    photod = !photod;
-    if(photod === false){
-        photo.style.background = 'url("../resource/image/text.svg")';
-        photo.style.backgroundSize = 'cover';
-    }
-    else{
-        photo.style.background = 'url("../resource/image/photo.svg")';
-        photo.style.backgroundSize = 'cover';
-    }
-}
+// photo.onclick = function(){
+//
+//     photod = !photod;
+//     if(photod === false){
+//         photo.style.background = 'url("../resource/image/text.svg")';
+//         photo.style.backgroundSize = 'cover';
+//     }
+//     else{
+//         photo.style.background = 'url("../resource/image/photo.svg")';
+//         photo.style.backgroundSize = 'cover';
+//     }
+// }
 
-function transphoto(){
-    if (photod === false){
-        console.log(0);
-        return 0;
-    }
-    else{
-        console.log(1);
-        return 1;
-    }
-}
+// function transphoto(){
+//     if (photod === false){
+//         console.log(0);
+//         return 0;
+//     }
+//     else{
+//         console.log(1);
+//         return 1;
+//     }
+// }
 
 /*------------------------------------------------------------------*/
 

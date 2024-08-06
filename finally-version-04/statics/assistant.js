@@ -440,3 +440,63 @@ audio_assistant_listener()
 
 })
 
+
+// const chatoutbtn = document.getElementById("chatoutbtn");
+//
+// async function callBackend() {
+//     const prompt = "the most beautiful scene";
+//     const response = await fetch('/call_ttp', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({prompt: prompt})
+//     });
+//
+//     if (!response.ok) {
+//         console.error('HTTP error:', response.status);
+//         return;
+//     }
+//
+//     const result = await response.json();
+//     if (result.url) {
+//         console.log(result.url);
+//         document.getElementById('result').innerText = result.url;
+//     } else {
+//         console.error(result.error);
+//         document.getElementById('result').innerText = result.error;
+//     }
+// }
+//
+// chatoutbtn.addEventListener('click', callBackend);
+
+async function callBackend() {
+    console.log('开启温升图')
+    const prompt = "the most beautiful scene";
+    const response = await fetch('http://localhost:5000/call_ttp', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: prompt })
+    });
+
+    if (!response.ok) {
+        console.error('HTTP error:', response.status);
+        return;
+    }
+
+    const result = await response.json();
+    if (result.url) {
+        console.log(result.url);
+        document.getElementById('result').innerText = result.url;
+    } else {
+        console.error(result.error);
+        document.getElementById('result').innerText = result.error;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const chatoutbtn = document.getElementById("chatoutbtn");
+    chatoutbtn.addEventListener('click', callBackend);
+});

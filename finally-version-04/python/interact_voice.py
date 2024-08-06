@@ -5,7 +5,7 @@ import ASR_Recognize
 import TTS
 import json
 import ASR_Listener
-
+import Text_to_Photo
 
 app = Flask(__name__)
 CORS(app)
@@ -65,6 +65,17 @@ def text_read():
     TTS.tts(text)
     result = {"message":text}
     return result
+
+@app.route('/call_ttp', methods=['POST'])
+def call_ttp():
+    data = request.get_json()
+    prompt = data.get('prompt', '')
+    if prompt:
+        print("prompt", prompt)
+        url = Text_to_Photo.TTP(prompt)
+        return jsonify({'url': url})
+    else:
+        return jsonify({'error': 'Invalid input'}), 400
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000)

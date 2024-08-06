@@ -1,6 +1,21 @@
 let model_choice;//初始设置为0
 var IsAudio=new Boolean(true);
 
+var photod = false;
+photo.onclick = function(){
+
+    photod = !photod;
+    if(photod === false){
+        photo.style.background = 'url("../resource/image/text.svg")';
+        photo.style.backgroundSize = 'cover';
+    }
+    else{
+        photo.style.background = 'url("../resource/image/photo.svg")';
+        photo.style.backgroundSize = 'cover';
+    }
+}
+
+
 // // 取当前页面名称(不带后缀名)
 // const mute_test = document.getElementById('mute')
 // function pageName()
@@ -219,7 +234,7 @@ function handleKeyDown(event) {
     }
 }
 
-function sendChatMessage() {
+async function sendChatMessage() {
     const input = document.getElementById('chatinput');
     const message = input.value;
     if (message) {
@@ -278,34 +293,93 @@ function sendChatMessage() {
         botText.style.maxWidth = '70%';
         botText.style.overflowWrap = 'break-word';
 
-        const source = new EventSource(`http://127.0.0.1:5001/base_stream?input=${encodeURIComponent(message)}`);
-        let answer = "";
+        if (photod){
 
-        source.addEventListener('message', function (event) {
-            const data = JSON.parse(event.data);
-            console.log('Received SSE message:', data);
 
-            if (data.processed === '[DONE]') {
-                source.close();
-                input.value = '';
-                assistant_result = answer
-                if(IsAudio){
-                    text_read_assistant()
+            console.log('开启温升图')
+            const prompt = encodeURIComponent(message);
+            const response = await fetch('http://localhost:5000/call_ttp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: prompt })
+            });
+
+            if (!response.ok) {
+                console.error('HTTP error:', response.status);
+                return;
+            }
+
+            const result = await response.json();
+            if (result.url) {
+                console.log(result.url);
+                document.getElementById('result').innerText = result.url;
+            } else {
+                console.error(result.error);
+                document.getElementById('result').innerText = result.error;
+            }
+
+        }else{
+            const source = new EventSource(`http://127.0.0.1:5001/base_stream?input=${encodeURIComponent(message)}`);
+            let answer = "";
+
+            source.addEventListener('message', function (event) {
+                const data = JSON.parse(event.data);
+                console.log('Received SSE message:', data);
+
+                if (data.processed === '[DONE]') {
+                    source.close();
+                    input.value = '';
+                    assistant_result = answer
+                    if(IsAudio){
+                        text_read_assistant()
+                    }
                 }
-            }
-             else {
-                answer += data.processed;
-                botText.innerHTML = marked.parse(answer);
-                botMessage.scrollIntoView({ behavior: 'smooth', block: "end" });
-            }
-        });
+                 else {
+                    answer += data.processed;
+                    botText.innerHTML = marked.parse(answer);
+                    botMessage.scrollIntoView({ behavior: 'smooth', block: "end" });
+                }
+            });
 
-        source.addEventListener('error', function (event) {
-            console.error('SSE error:', event);
-            if (event.readyState === EventSource.CLOSED) {
-                source.close();
-            }
-        });
+            source.addEventListener('error', function (event) {
+                console.error('SSE error:', event);
+                if (event.readyState === EventSource.CLOSED) {
+                    source.close();
+                }
+            });
+        }
+
+
+        // const source = new EventSource(`http://127.0.0.1:5001/base_stream?input=${encodeURIComponent(message)}`);
+        // let answer = "";
+        //
+        // source.addEventListener('message', function (event) {
+        //     const data = JSON.parse(event.data);
+        //     console.log('Received SSE message:', data);
+        //
+        //     if (data.processed === '[DONE]') {
+        //         source.close();
+        //         input.value = '';
+        //         assistant_result = answer
+        //         if(IsAudio){
+        //             text_read_assistant()
+        //         }
+        //     }
+        //      else {
+        //         answer += data.processed;
+        //         botText.innerHTML = marked.parse(answer);
+        //         botMessage.scrollIntoView({ behavior: 'smooth', block: "end" });
+        //     }
+        // });
+        //
+        // source.addEventListener('error', function (event) {
+        //     console.error('SSE error:', event);
+        //     if (event.readyState === EventSource.CLOSED) {
+        //         source.close();
+        //     }
+        // });
 
         // 将头像和消息文本添加到机器人消息容器中
         botMessage.appendChild(botText);

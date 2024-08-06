@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../statics/index.css">
     <link rel="stylesheet" href="../statics/traffic.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div class = "particles"></div>
@@ -81,10 +82,10 @@
                     </div>
                     <form id = "output" onsubmit = "return false;">
                         <input type="text" class="userinput" id="userinput" placeholder="请输入..."
-                            onkeydown="handleKeyDown(event)">
+                            onkeydown="handleKeyDown_traffic(event)">
                         <div class="outbox">
                             <label>
-                                <input type="button" id="outimage" onclick="sendMessage()">
+                                <input type="button" id="outimage" onclick="sendtrafficMessage()">
                                 <img src="../resource/image/out.svg" alt="发送">
                             </label>
                         </div>
@@ -99,6 +100,7 @@
 <script src="../statics/button.js"></script>
 <script src="../statics/chat.js"></script>
 <script src="../statics/history.js"></script>
+<script src="../statics/traffic.js"></script>
 <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
 </html>
 

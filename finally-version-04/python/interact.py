@@ -4,6 +4,8 @@ from langchain_dishmap_new import ChatAssistant
 from langchain_core.messages.human import HumanMessage
 from langchain_community.chat_message_histories import RedisChatMessageHistory
 from base_model import ChatAssistantAgent
+from langchain_model_traffic import NavigationRequestParser
+from langchain_model_route_processing import NavigationInfoExtractor
 import json
 import os
 
@@ -13,6 +15,8 @@ chat_model_cooking = ChatAssistant(category="cooking")
 chat_model_out = ChatAssistant(category="out")
 chat_model_medicine = ChatAssistant(category="medicine")
 chat_model_travel = ChatAssistant(category="travel")
+parser = NavigationRequestParser()
+extractor = NavigationInfoExtractor()
 
 basemodel = ChatAssistantAgent()
 
@@ -207,6 +211,43 @@ async def base_stream():
 
     return Response(generate(), content_type='text/event-stream')
 
+
+@app.route('/load_address', methods=['GET'])
+async def load_address():
+    #data = await request.get_json()
+    global user_input
+    user_input = request.args.get('input')
+
+    if not user_input:
+        return jsonify({"error": "No input provided"}), 400
+
+    # result = parser.parse_navigation_request(user_input)
+    # return jsonify({"message": result})
+    async def generate():
+        async for res in parser.parse_navigation_request(user_input):
+            print(f"Yielding response chunk: {res}")  # Debug print
+            yield f"data: {json.dumps({'processed': res})}\n\n"
+        yield f"data: {json.dumps({'processed': '[DONE]'})}\n\n"  # End of stream
+
+    return Response(generate(), content_type='text/event-stream')
+
+
+@app.route('/route_process', methods=['GET'])
+async def route_process():
+    #data = await request.get_json()
+    global user_input
+    user_input = request.args.get('input')
+
+    if not user_input:
+        return jsonify({"error": "No input provided"}), 400
+
+    async def generate():
+        async for res in extractor.extract_navigation_info(user_input):
+            print(f"Yielding response chunk: {res}")  # Debug print
+            yield f"data: {json.dumps({'processed': res})}\n\n"
+        yield f"data: {json.dumps({'processed': '[DONE]'})}\n\n"  # End of stream
+
+    return Response(generate(), content_type='text/event-stream')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
