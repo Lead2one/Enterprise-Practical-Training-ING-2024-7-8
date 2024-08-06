@@ -41,7 +41,3 @@ def simple_call(prompt):
 def TTP(prompt):
     url = simple_call(prompt)
     return url
-
-
-prompt = 'the most beautiful scene you think'
-TTP(prompt)

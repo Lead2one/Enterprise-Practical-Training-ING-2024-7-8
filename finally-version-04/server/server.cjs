@@ -60,24 +60,22 @@ app.post('/addUser', (req, res) => {
 });
 
 app.post('/addChat', (req, res) => {
-    const { username, chat } = req.body;
-
-    //3. 此处根据需求修改 SQL 语句
-    const sql = 'insert into user_chat (u_username, u_chat) values (?, ?)';
-    db.query(sql, [username, chat], (err, result) => {
+    const { username, chat ,mode} = req.body;
+    const sql = 'insert into user_chat (u_username, u_chat ,u_mode) values (?, ? ,?)';
+    db.query(sql, [username, chat, mode], (err, result) => {
         if (err) {
             res.status(500).send({ error: 'Failed to save reservation' });
             return;
         }
-        res.json({ success: true, data: result, username: username, chat: chat });
+        res.json({ success: true, data: result, username: username, chat: chat ,mode: mode});
     });
 });
 
 app.get('/getUserChats', (req, res) => {
     const username = req.query.username;
-
-    const sql = 'SELECT u_chat FROM user_chat WHERE u_username = ?';
-    db.query(sql, [username], (err, results) => {
+    const mode=req.query.mode;
+    const sql = 'SELECT u_chat FROM user_chat WHERE u_username = ? AND u_mode = ?';
+    db.query(sql, [username,mode], (err, results) => {
         if (err) {
             res.status(500).send({ error: 'Failed to fetch user chats' });
             return;

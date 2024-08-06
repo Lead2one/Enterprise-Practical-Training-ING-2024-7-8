@@ -6,6 +6,7 @@ from langchain_community.chat_message_histories import RedisChatMessageHistory
 from base_model import ChatAssistantAgent
 from langchain_model_traffic import NavigationRequestParser
 from langchain_model_route_processing import NavigationInfoExtractor
+import Text_to_Photo
 import json
 import os
 
@@ -248,6 +249,20 @@ async def route_process():
         yield f"data: {json.dumps({'processed': '[DONE]'})}\n\n"  # End of stream
 
     return Response(generate(), content_type='text/event-stream')
+
+
+# 文生图
+@app.route('/call_ttp', methods=['POST'])
+async def call_ttp():
+    data = await request.get_json()
+    prompt = data.get('prompt', '')
+    if prompt:
+        #print("prompt", prompt)
+        url = Text_to_Photo.TTP(prompt)
+        return jsonify({'url': url})
+    else:
+        return jsonify({'error': 'Invalid input'}), 400
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

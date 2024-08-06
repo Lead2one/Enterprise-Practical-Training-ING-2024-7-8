@@ -293,12 +293,32 @@ async function sendChatMessage() {
         botText.style.maxWidth = '70%';
         botText.style.overflowWrap = 'break-word';
 
+
+
         if (photod){
+            input.value = ""
+            let processingMessage
+            if (!processingMessage) {
+                // 创建临时消息
+                processingMessage = document.createElement('div');
+                processingMessage.classList.add('message', 'bot-message');
+                processingMessage.style.display = 'flex';
+                processingMessage.style.alignItems = 'flex-start';
+                processingMessage.style.margin = '20px';
+                processingMessage.style.justifyContent = 'flex-end';
 
+                // 添加头像和消息文本
+                processingMessage.appendChild(botText);
+                processingMessage.appendChild(botAvatar);
 
-            console.log('开启温升图')
+                chatcontent.appendChild(processingMessage);
+            }
+
+            botText.innerText = '正在为您绘制，请耐心等待...预计等待时间不会超过一分钟...';
+            processingMessage.scrollIntoView({ behavior: 'smooth', block: "end" });
+
             const prompt = encodeURIComponent(message);
-            const response = await fetch('http://localhost:5000/call_ttp', {
+            const response = await fetch('http://localhost:5001/call_ttp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -314,13 +334,40 @@ async function sendChatMessage() {
             const result = await response.json();
             if (result.url) {
                 console.log(result.url);
-                document.getElementById('result').innerText = result.url;
+
+                // 创建消息文本容器
+                const botTextContainer = document.createElement('div');
+                botTextContainer.style.display = 'flex';
+                botTextContainer.style.flexDirection = 'column';
+                botTextContainer.style.maxWidth = '70%';
+                botTextContainer.style.overflowWrap = 'break-word';
+
+                // 创建图像
+                const img = document.createElement('img');
+                img.src = result.url;
+                img.alt = 'Map Image';
+                img.style.maxWidth = '100%';
+                img.style.marginTop = '10px';
+
+                processingMessage.remove();
+
+                botTextContainer.appendChild(img);
+                //botTextContainer.appendChild(botText)
+                //botText.innerText = "下载链接：" + toString(result.url)
+
+                // 将消息文本容器和机器人头像添加到机器人消息容器中
+                botMessage.appendChild(botTextContainer);
+                botMessage.appendChild(botAvatar);
+                chatcontent.appendChild(botMessage);
+
+
+
             } else {
                 console.error(result.error);
-                document.getElementById('result').innerText = result.error;
             }
 
         }else{
+
             const source = new EventSource(`http://127.0.0.1:5001/base_stream?input=${encodeURIComponent(message)}`);
             let answer = "";
 
@@ -349,6 +396,11 @@ async function sendChatMessage() {
                     source.close();
                 }
             });
+
+            // 将头像和消息文本添加到机器人消息容器中
+            botMessage.appendChild(botText);
+            botMessage.appendChild(botAvatar);
+            chatcontent.appendChild(botMessage);
         }
 
 
@@ -381,10 +433,7 @@ async function sendChatMessage() {
         //     }
         // });
 
-        // 将头像和消息文本添加到机器人消息容器中
-        botMessage.appendChild(botText);
-        botMessage.appendChild(botAvatar);
-        chatcontent.appendChild(botMessage);
+
 
         // 清空输入框
         input.value = '';
@@ -400,7 +449,9 @@ async function sendChatMessage() {
 }
 
 function handleChatKeyDown(event) {
+
     if (event.key === 'Enter') {
+        console.log('handleChatKeyDown event:', event);
         sendChatMessage();
     }
 }

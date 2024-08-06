@@ -13,7 +13,17 @@ function history_show() {
 }
 
 function add_history() {
-    // 获取 username
+    let mode;
+    if (window.location.pathname.endsWith('food.html')) {
+        mode = 'food';
+    } else if (window.location.pathname.endsWith('medical.html')) {
+        mode = 'medical';
+    } else if (window.location.pathname.endsWith('traffic.html')) {
+        mode = 'traffic';
+    } else if (window.location.pathname.endsWith('travel.html')) {
+        mode = 'travel';
+    }
+
     fetch('http://127.0.0.1:5001/getUsername', {
         method: 'GET',
         headers: {
@@ -23,8 +33,7 @@ function add_history() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            var username = data.username;
-            // 发送 index 和 username 到 http://127.0.0.1:5001/addChat
+            const username = data.username;
             fetch('http://localhost:3000/addChat', {
                 method: 'POST',
                 headers: {
@@ -32,18 +41,23 @@ function add_history() {
                 },
                 body: JSON.stringify({
                     username: username,
-                    chat: index
+                    chat: index,
+                    mode: mode
                 })
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     console.log('成功创建');
+                } else {
+                    console.error('Failed to add chat:', data.error);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
             });
+        } else {
+            console.error('Failed to get username:', data.error);
         }
     })
     .catch(error => {
@@ -102,15 +116,29 @@ function render_history(myindex) {
 $(document).ready(function() {
     function render_history_list(username) {
         console.log(username)
-        fetch(`http://localhost:3000/getUserChats?username=${username}`)
+        if (window.location.pathname.endsWith('food.html')) {
+            mode='food';
+        }
+        else if(window.location.pathname.endsWith('medical.html')) {
+            mode='medical';
+        }
+        else if(window.location.pathname.endsWith('traffic.html')) {
+            mode='traffic';
+        }
+        else if(window.location.pathname.endsWith('travel.html')) {
+            mode='travel';
+        }
+        fetch(`http://localhost:3000/getUserChats?username=${username}&mode=${mode}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     const historyList = document.querySelector('.historylist');
                     historyList.innerHTML = '';  // 清空当前的历史记录
                     if (data.chats.length === 0) {
+                        index=0;
                         add_history();  // 如果没有聊天记录，则添加一个新的聊天记录
                     } else {
+                        index=data.chats.length;
                         data.chats.forEach((chat, myindex) => {
                             var $li = $(`
                                 <li class="historyli ${myindex === currentIndex ? "currentchat" : ""}" onclick="change_history(${myindex})">
