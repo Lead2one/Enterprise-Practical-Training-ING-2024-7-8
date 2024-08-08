@@ -1,0 +1,13 @@
+python库:
+quart
+quart_cors
+langchain
+langchain_community
+langchain_huggingface
+websocket-client
+google-search-results
+numexpr
+dashscope
+google-api-python-client
+redis
+faiss-cpu
