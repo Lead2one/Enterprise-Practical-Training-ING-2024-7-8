@@ -1,0 +1,134 @@
+/* 全局样式 */
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif; /* 添加科技感字体 */
+    background-color: #000;
+    color: #fff;
+}
+body:has(#foodbtn:hover){
+    transition: 0.8s ease-in-out;
+    background-color: #fbc2eb;
+    color:#000000;
+}
+body:has(#medicalbtn:hover){
+    transition: 0.8s ease-in-out;
+    background-color: #01c295;
+    color:#000000;
+}
+body:has(#trafficbtn:hover){
+    transition: 0.8s ease-in-out;
+    background-color: #3eede7;
+    color:#000000;
+}
+body:has(#travelbtn:hover){
+    transition: 0.8s ease-in-out;
+    background-color: #c0ebd7;
+    color:#000000;
+}
+
+/* 粒子样式 */
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: float 10s infinite ease-in-out, move 20s linear infinite;
+}
+
+/* 浮动动画 */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* 移动动画 */
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+/* 覆盖层样式 */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* color: #fff; */
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 0.5em 0;
+}
+
+header h2 {
+    font-size: 2em;
+    margin: 0.5em 0 2em;
+}
+
+/* 选项卡容器样式 */
+.options-container {  
+    display: flex;  
+    justify-content: center;  
+    width: 80%;  
+    height: 40vh; /* 使用 vh 单位 */  
+    padding: 0; 
+}  
+
+/* 选项卡样式 */
+.option {
+    display: flex;
+    flex-direction: column;  
+    margin: 0 80px;  
+    padding: 40px;  
+    background: rgba(255, 255, 255, 0.1);  
+    border-radius: 10px;  
+    cursor: pointer;  
+    transition: transform 0.3s, background 0.3s;  
+}
+
+/* 选项卡悬停效果 */
+.option:hover {  
+    background: rgba(255, 255, 255, 0.2);  
+}
+  
+.option p {
+    height: 50%;  
+    font-size: 1.5em;  
+    margin: 0;
+}
+
+/* 选项卡图标样式 */
+.option img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    transition: transform 0.3s;
+}
+
+/* 选项卡图标悬停效果 */
+.option:hover img{
+    transform: rotateY(360deg);
+} 
