@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel</title>
+    <link rel="icon" href="../resource/image/travel.svg"/>
+    <link rel="stylesheet" href="../statics/index.css">
+    <link rel="stylesheet" href="../statics/travel.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class = "particles"></div>
+    <div class ="side">
+        <div class = "text">
+            <h1>
+               Travel
+            </h1>
+        </div>
+        <div class = "dialog" id = "dialog">
+            <div class = "oimg" id = "oimg1"><a href="./food.html"><img src = "../resource/image/food.svg"></a></div>
+            <div class = "oimg" id = "oimg2"><a href="./medical.html"><img src = "../resource/image/medical.svg"></a></div>
+            <div class = "oimg" id = "oimg3"><a href="./traffic.html"><img src = "../resource/image/traffic.svg"></a></div>
+        </div>
+        <div class="img" id="assistant_board">
+            <div class = "historychat" id = "history">
+                <div id = "chathead">
+                    <h2>聊天记录</h2>
+                    <button class = "buttons" id = "chatcbtn"></button>
+                </div>
+                <div id = "chatcontent">
+        
+                </div>
+                <form id = "userchatinput" onsubmit = "return false;">
+                    <input type = "text" id = "chatinput" placeholder= "请输入..." onkeydown="handleChatKeyDown()">
+                    <button id = "chatoutbtn" onclick="sendChatMessage()"></button>
+                </form>
+            </div>
+            <div class = "container-button" id = "containerButton">
+                <button class = "buttons" id = "skin" ></button>
+                <button class = "buttons" id = "tone"></button>
+                <button class = "buttons" id = "voice"></button>
+                <button class = "buttons" id = "mute"></button>
+                <button class = "buttons" id = "photo"></button>
+            </div>
+            <div class = "videobox" id = "videobox">
+                <div class = "container-video"><video id = "videoPlayer" src="../resource/Skadi the Corrupting Heart/relax (2).webm" autoplay loop></video></div>
+                <div class = "bubble" id = "chat">
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class = "main">
+        <span class="container-background-button" >
+            <div class="history-container">
+                <button class="button-history" onclick="history_show()">显示历史记录</button>
+            </div>
+        </span>
+        <div class = "right">
+            <div class = "aibox">
+                <div id="chatbox" class="chatbox"></div>
+                <div id="historybox" class="historybox">
+                    <div class="historyboxtop">
+                        <h2>历史记录</h2>
+                        <button class="buttons" id="historycbtn" onclick="history_fold()"></button>
+                    </div>
+                    <div class="historylist" id="historylist"></div>
+                    <div class="newchat" onclick="add_history()">创建新聊天</div>
+                </div>
+            </div>
+            <div class = "userbox">
+                <div class = "ornament"></div>
+                <div class = "container-input">
+                    <div class = "imgbox">
+                        <label>
+                            <input type = "checkbox" id="toggleimage">
+                            <img src="../resource/image/voice_light.svg" alt="语音输入">
+                        </label>
+                    </div>
+                    <form id = "output" onsubmit = "return false;">
+                        <input type="text" class="userinput" id="userinput" placeholder="请输入..."
+                            onkeydown="handleKeyDown(event)">
+                        <div class="outbox">
+                            <label>
+                                <input type="button" id="outimage" onclick="sendMessage()">
+                                <img src="../resource/image/out.svg" alt="发送">
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../statics/base.js"></script>
+<script src="../statics/assistant.js"></script>
+<script src="../statics/button.js"></script>
+<script src="../statics/chat.js"></script>
+<script src="../statics/history.js"></script>
+<script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
+</html>
+
