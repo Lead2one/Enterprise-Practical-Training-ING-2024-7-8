@@ -1,0 +1,44 @@
+:root{
+    --MAIN:#15c9fab8;
+    --MAIN_LIGHT:#31e1f1;
+    --MAIN_LIGHTP:#9efefb;
+    --MAIN_B:#ace3ff;
+    --MAIN_O:#93a1fe;
+    --DEEP:#3abdff;
+    --MAIN_R:#92dbff;
+    --MAIN_D:#baddf5;
+    --CHAT_B:#59a8d8;
+;}
+.food{
+    --MAIN:#e4c6d0;
+    --MAIN_LIGHT:#edd1d8;
+    --MAIN_LIGHTP:#c4a3bf;
+    --MAIN_B:#9d5b8b;
+    --MAIN_O:#cca6bf;
+    --DEEP:#cc7eb1;
+    --MAIN_R:#d3cfd9;
+    --MAIN_D:#a69abd;
+    --CHAT_B:#e6cde3;
+;}
+.medical {
+    --MAIN: #01c295;
+    --MAIN_LIGHT: #49f4b0;
+    --MAIN_LIGHTP: #7fecad;
+    --MAIN_B: #03ad7a;
+    --MAIN_O: #b9fe43;
+    --DEEP: #8aff9d;
+    --MAIN_R: #69fd89;
+    --MAIN_D: #9fffd8;
+    --CHAT_B: #c3ffde;
+}
+.travel{
+    --MAIN:#f3f9f1;
+    --MAIN_LIGHT:#e0f0e9;
+    --MAIN_LIGHTP:#c0ebd7;
+    --MAIN_B:#bacac6;
+    --MAIN_O:#ffd2d2;
+    --DEEP:#75878a;
+    --MAIN_R:#fff2df;
+    --MAIN_D:#636363;
+    --CHAT_B:#e9e7ef;
+;}

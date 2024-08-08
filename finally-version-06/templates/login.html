@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录与注册</title>
+    <link rel="icon" href="../resource/image/login.svg" />
+    <link rel="stylesheet" href="../statics/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <div class="overlay">
+        <div class="form-container">
+            <h1 class="text">Welcome to Intelligent Q&A</h1>
+            <div class="form-tabs">
+                <button id="login-button" class="tab-button" onclick="showForm('login')">login</button>
+                <button id="register-button" class="tab-button" onclick="showForm('register')">register</button>
+            </div>
+            <div id="login" class="form-content">
+                <form onsubmit="return false;">
+                    <label for="login-username">username:</label>
+                    <input type="text" id="login-username" name="username">
+                    <label for="login-password">password:</label>
+                    <input type="password" id="login-password" name="password">
+                    <button type="button" onclick="login()">login</button>
+                </form>
+            </div>
+            <div id="register" class="form-content">
+                <form onsubmit="return false;">
+                    <label for="register-username">username:</label>
+                    <input type="text" id="register-username" name="username">
+                    <label for="register-password">password:</label>
+                    <input type="password" id="register-password" name="password">
+                    <button type="button" onclick="register()">register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../statics/login-appearance.js"></script>
+<script src="../statics/login.js"></script>
+<script src="../statics/register.js"></script>
+
+</html>

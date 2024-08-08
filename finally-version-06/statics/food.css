@@ -1,0 +1,136 @@
+:root{
+    --MAIN:#e4c6d0;
+    --MAIN_LIGHT:#edd1d8;
+    --MAIN_LIGHTP:#c4a3bf;
+    --MAIN_B:#9d5b8b;
+    --MAIN_O:#cca6bf;
+    --DEEP:#cc7eb1;
+    --MAIN_R:#d3cfd9;
+    --MAIN_D:#a69abd;
+    --CHAT_B:#e6cde3;
+;}
+.medical {
+    --MAIN: #01c295;
+    --MAIN_LIGHT: #49f4b0;
+    --MAIN_LIGHTP: #7fecad;
+    --MAIN_B: #03ad7a;
+    --MAIN_O: #b9fe43;
+    --DEEP: #8aff9d;
+    --MAIN_R: #69fd89;
+    --MAIN_D: #9fffd8;
+    --CHAT_B: #c3ffde;
+}
+.traffic{
+    --MAIN:#15c9fab8;
+    --MAIN_LIGHT:#31e1f1;
+    --MAIN_LIGHTP:#9efefb;
+    --MAIN_B:#ace3ff;
+    --MAIN_O:#93a1fe;
+    --DEEP:#3abdff;
+    --MAIN_R:#92dbff;
+    --MAIN_D:#baddf5;
+    --CHAT_B:#59a8d8;
+;}
+.travel{
+    --MAIN:#f3f9f1;
+    --MAIN_LIGHT:#e0f0e9;
+    --MAIN_LIGHTP:#c0ebd7;
+    --MAIN_B:#bacac6;
+    --MAIN_O:#ffd2d2;
+    --DEEP:#75878a;
+    --MAIN_R:#fff2df;
+    --MAIN_D:#636363;
+    --CHAT_B:#e9e7ef;
+;}
+/* 下拉按钮基本样式 */
+.dropdown-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 20px;
+    background-color: var(--MAIN);
+    border: 1px solid --MAIN_B;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: 0.4s ease-in-out;
+}
+.dropdown-button:hover{
+    background-color: var(--MAIN_O);
+}
+.dropdown-title{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+/* 下拉按钮图标样式 */
+.dropdown-icon img,
+.dropdown-arrow img {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease; /* 平滑过渡 */
+}
+
+/* 下拉列表容器基本样式 */
+.dropdown-list-container {
+    position: absolute;
+    width: 20%;
+    background-color: var(--MAIN_LIGHTP);
+    display: none; /* 默认隐藏 */
+    transition: 0.5s ease;
+    border-radius: 20px;
+}
+
+/* 下拉列表样式 */
+.dropdown-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 图标样式 */
+.dropdown-item-icon {
+    width: 16px; /* 图标宽度 */
+    height: 16px; /* 图标高度 */
+    margin-right: 10px; /* 图标与文本之间的间隔 */
+    vertical-align: middle; /* 垂直居中对齐 */
+}
+
+/* 列表项样式更新，以包含图标 */
+.dropdown-list li {
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex; /* 使用flex布局 */
+    align-items: center; /* 垂直居中对齐 */
+    border-radius: 20px;
+    transition: 0.4s ease-in-out;
+}
+
+/* 下拉列表项悬停样式 */
+.dropdown-list li:hover {
+    background-color: var(--MAIN_LIGHT);
+}
+
+/* 浮动图标样式，如果需要的话 */
+.floating-icon {
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--MAIN_D);
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+}
+
+.dropdown-list li.selected::after {
+    content: '✔';
+    display: inline-block;
+    width: 25px; 
+    height: 25px; 
+    margin-left: auto; /* 将圆形放置在右侧 */
+}
+
+.dropdown-arrow img.rotated {
+    transform: rotate(180deg);
+}
